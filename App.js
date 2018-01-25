@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -20,18 +21,23 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+  state = {
+    placeName: ''
+  }
+  // Create a method where the "this" keyword will always refer to the class:
+  placeNameChangedHandler = (event) => {
+    alert(event);
+    // Set the state to whatever the user enters
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <TextInput 
+        style={{width: 300, borderColor: "black", borderWidth: 1}}
+        value={this.state.placeName} 
+        onChangeText={this.placeNameChangedHandler}
+        />
       </View>
     );
   }
