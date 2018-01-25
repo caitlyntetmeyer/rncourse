@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -20,11 +21,11 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   state = {
     placeName: ''
   }
-  // Create a method where the "this" keyword will always refer to the class:
+  // Create a method where the "this" keyword will always refer to the class App:
   placeNameChangedHandler = (event) => {
     // Set the state to whatever the user enters:
     this.setState({
@@ -32,34 +33,49 @@ export default class App extends Component<{}> {
     });
   }
 
+  
+
   render() {
     return (
       <View style={styles.container}>
-        <TextInput 
-        style={{width: 300, borderColor: "black", borderWidth: 1}}
-        value={this.state.placeName} 
-        onChangeText={this.placeNameChangedHandler}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput 
+          placeholder="Enter text here"
+          value={this.state.placeName} 
+          onChangeText={this.placeNameChangedHandler}
+          style={styles.placeInput}
+          />
+          <Button title="Add" style={styles.placeButton} />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  // Style the View above:
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    flex: 1, // Use Flexbox to take all available space on the main axis
+    padding: 26, 
+    backgroundColor: "#fff",
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // Position the content on the main axis:
+    justifyContent: 'flex-start' // child elements of the wrapping element are positioned at the start
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  // Style the wrapper for the text field and button:
+  inputContainer: {
+    // flex: 1, // take full available space in the container
+    width: "100%", // take the full available width
+    flexDirection: "row", // set elements from L to R
+    justifyContent: "space-between", // 1st element sits on L, 2nd element sits on R, there's space between them
+    alignItems: "center" // aligns "ADD" center inside the button
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  // Style the text field:
+  placeInput: {
+    width: "70%"
   },
+  // Style the button:
+  placeButton: {
+    width: "30%"
+  }
 });
