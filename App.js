@@ -54,8 +54,8 @@ export default class App extends Component {
 
   render() {
     // Render array of places that user enters:
-    const placesOutput = this.state.places.map(place => (
-      <Text>{place}</Text>
+    const placesOutput = this.state.places.map((place, i) => (
+      <Text key={i}>{place}</Text>
     ));
     return (
       <View style={styles.container}>
