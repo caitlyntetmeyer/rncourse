@@ -23,7 +23,10 @@ const instructions = Platform.select({
 
 export default class App extends Component {
   state = {
-    placeName: ''
+    // Each entry typed in by the user is called "placeName":
+    placeName: '',
+    // What the user inputs will be added to the "places" array:
+    places: []
   }
   // Create a method where the "this" keyword will always refer to the class App:
   placeNameChangedHandler = (event) => {
@@ -33,19 +36,38 @@ export default class App extends Component {
     });
   }
 
-  
+  // When user presses button, add their text input to an array (which will eventually be displayed on the page): 
+  placeSubmitHandler = () => {
+    // If user enters empty string, just return it:
+    if (this.state.placeName.trim() === ""){
+      return;
+    }
+    // Otherwise, add user's entry to the array:
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(prevState.placeName)
+      };
+    });
+  }
+
+  thi
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput 
-          placeholder="Enter text here"
+          placeholder="Enter an awesome place here"
           value={this.state.placeName} 
           onChangeText={this.placeNameChangedHandler}
           style={styles.placeInput}
           />
-          <Button title="Add" style={styles.placeButton} />
+          <Button title="Add" 
+          style={styles.placeButton} 
+          onPress={this.placeSubmitHandler}/>
+        </View>
+        <View>
+          
         </View>
       </View>
     );
