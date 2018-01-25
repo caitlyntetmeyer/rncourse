@@ -26,8 +26,10 @@ export default class App extends Component<{}> {
   }
   // Create a method where the "this" keyword will always refer to the class:
   placeNameChangedHandler = (event) => {
-    alert(event);
-    // Set the state to whatever the user enters
+    // Set the state to whatever the user enters:
+    this.setState({
+      placeName: val // val is the value the user enters.
+    });
   }
 
   render() {
