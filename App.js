@@ -53,6 +53,10 @@ export default class App extends Component {
   thi
 
   render() {
+    // Render array of places that user enters:
+    const placesOutput = this.state.places.map(place => (
+      <Text>{place}</Text>
+    ));
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -67,7 +71,7 @@ export default class App extends Component {
           onPress={this.placeSubmitHandler}/>
         </View>
         <View>
-          
+          {placesOutput}
         </View>
       </View>
     );
