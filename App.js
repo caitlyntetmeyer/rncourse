@@ -50,8 +50,6 @@ export default class App extends Component {
     });
   }
 
-  thi
-
   render() {
     // Render array of places that user enters:
     const placesOutput = this.state.places.map((place, i) => (
