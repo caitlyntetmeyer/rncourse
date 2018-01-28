@@ -36,7 +36,7 @@ export default class App extends Component {
     this.setState({
       placeName: val // val is the value the user enters.
     });
-  }
+  };
 
   // When user presses button, add their text input to an array (which will eventually be displayed on the page): 
   placeSubmitHandler = () => {
@@ -58,22 +58,7 @@ export default class App extends Component {
       <ListItem key={i} placeName={place} />
     ));
     return (
-      <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput 
-          placeholder="Enter an awesome place here"
-          value={this.state.placeName} 
-          onChangeText={this.placeNameChangedHandler}
-          style={styles.placeInput}
-          />
-          <Button title="Add" 
-          style={styles.placeButton} 
-          onPress={this.placeSubmitHandler}/>
-        </View>
-        <View>
-          {placesOutput}
-        </View>
-      </View>
+      <View style={styles.container}></View>
     );
   }
 }
@@ -87,21 +72,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // Position the content on the main axis:
     justifyContent: 'flex-start' // child elements of the wrapping element are positioned at the start
-  },
-  // Style the wrapper for the text field and button:
-  inputContainer: {
-    // flex: 1, // take full available space in the container
-    width: "100%", // take the full available width
-    flexDirection: "row", // set elements from L to R
-    justifyContent: "space-between", // 1st element sits on L, 2nd element sits on R, there's space between them
-    alignItems: "center" // aligns "ADD" center inside the button
-  },
-  // Style the text field:
-  placeInput: {
-    width: "70%"
-  },
-  // Style the button:
-  placeButton: {
-    width: "30%"
   }
 });
