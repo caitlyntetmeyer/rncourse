@@ -4,6 +4,8 @@ import { View, StyleSheet } from 'react-native';
 import ListItem from '../ListItem/ListItem';
 
 const placeList = props => {
+
+    // Render array of places that user enters:
     const placesOutput = props.places.map((place, i) => (
         <ListItem key={i} placeName={place} />
       ));

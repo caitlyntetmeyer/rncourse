@@ -1,20 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import ListItem from './src/components/ListItem/ListItem';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -25,40 +13,26 @@ const instructions = Platform.select({
 
 export default class App extends Component {
   state = {
-    // Each entry typed in by the user is called "placeName":
-    placeName: '',
     // What the user inputs will be added to the "places" array:
     places: []
-  }
-  // Create a method where the "this" keyword will always refer to the class App:
-  placeNameChangedHandler = (event) => {
-    // Set the state to whatever the user enters:
-    this.setState({
-      placeName: val // val is the value the user enters.
-    });
   };
 
   // When user presses button, add their text input to an array (which will eventually be displayed on the page): 
-  placeSubmitHandler = () => {
-    // If user enters empty string, just return it:
-    if (this.state.placeName.trim() === ""){
-      return;
-    }
-    // Otherwise, add user's entry to the array:
+  placeAddedHandler = placeName => {
+    // Add user's entry to the array:
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       };
     });
   }
 
   render() {
-    // Render array of places that user enters:
-    const placesOutput = this.state.places.map((place, i) => (
-      <ListItem key={i} placeName={place} />
-    ));
     return (
-      <View style={styles.container}></View>
+      <View style={styles.container}>
+        <PlaceInput onPlaceAdded={this.placeAddedHandler} />
+        <PlaceList places={this.state.places} />
+      </View>
     );
   }
 }

@@ -19,7 +19,7 @@ class PlaceInput extends Component {
     if (this.state.placeName.trim() === "") {
       return;
     }
-
+    // Putting this in this file lets us check the validity of the name inside the PlaceInput component:
     this.props.onPlaceAdded(this.state.placeName);
   };
 
